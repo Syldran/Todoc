@@ -23,18 +23,16 @@ import java.util.List;
 @RunWith(AndroidJUnit4.class)
 public class TaskDaoTest {
 
-    private TodocDatabase database;
-
     //DATA SET FOR TEST
     public static long PROJECT_ID = 1L;
     public static Project PROJECT_DEMO = new Project(PROJECT_ID, "Lampion", 0xFFEADAD1);
-    public static Task NEW_TASK_ALPHA = new Task(1L,PROJECT_ID, "TACHE ALPHA", 10);
-    public static Task NEW_TASK_BETA = new Task(2L,PROJECT_ID, "TACHE BETA", 10);
-    public static Task NEW_TASK_GAMMA = new Task(3L,PROJECT_ID, "TACHE GAMMA", 10);
-    //public static Task NEW_TASK_ZETA = new Task(3L,PROJECT_ID, "TACHE ZETA", 10);
-
+    public static Task NEW_TASK_ALPHA = new Task(1L, PROJECT_ID, "TACHE ALPHA", 10);
+    public static Task NEW_TASK_BETA = new Task(2L, PROJECT_ID, "TACHE BETA", 10);
+    public static Task NEW_TASK_GAMMA = new Task(3L, PROJECT_ID, "TACHE GAMMA", 10);
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+    //public static Task NEW_TASK_ZETA = new Task(3L,PROJECT_ID, "TACHE ZETA", 10);
+    private TodocDatabase database;
 
     @Before
     public void initDb() throws Exception {

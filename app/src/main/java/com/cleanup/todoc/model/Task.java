@@ -16,7 +16,7 @@ import java.util.Comparator;
  *
  * @author Gaëtan HERFRAY
  */
-@Entity (foreignKeys = @ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
+@Entity(foreignKeys = @ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "projectId"))
 public class Task {
     /**
      * The unique identifier of the task
@@ -84,15 +84,6 @@ public class Task {
     }
 
     /**
-     * Sets the unique identifier of the project associated to the task.
-     *
-     * @param projectId the unique identifier of the project associated to the task to set
-     */
-    public void setProjectId(long projectId) {
-        this.projectId = projectId;
-    }
-
-    /**
      * Returns the project associated to the task.
      *
      * @return the project associated to the task
@@ -104,6 +95,15 @@ public class Task {
 
     public long getProjectId() {
         return projectId;
+    }
+
+    /**
+     * Sets the unique identifier of the project associated to the task.
+     *
+     * @param projectId the unique identifier of the project associated to the task to set
+     */
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
     }
 
     /**
@@ -125,6 +125,10 @@ public class Task {
         this.name = name;
     }
 
+    public long getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
     /**
      * Sets the timestamp when the task has been created.
      *
@@ -132,10 +136,6 @@ public class Task {
      */
     public void setCreationTimestamp(long creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
-    }
-
-    public long getCreationTimestamp() {
-        return creationTimestamp;
     }
 
     /**

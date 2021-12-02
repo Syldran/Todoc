@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.cleanup.todoc.R;
 import com.cleanup.todoc.databinding.ActivityMainBinding;
@@ -40,8 +38,9 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity implements TasksAdapter.DeleteTaskListener {
 
+    @Nullable
+    public AlertDialog dialog = null;
     private ActivityMainBinding binding;
-    private static int PROJECT_ID = 1;
     private ArrayList<Project> allProjects = new ArrayList<Project>();
     @NonNull
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -50,19 +49,10 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     @NonNull
     private SortMethod sortMethod = SortMethod.NONE;
     @Nullable
-    public AlertDialog dialog = null;
-    @Nullable
     private EditText dialogEditText = null;
     @Nullable
     private Spinner dialogSpinner = null;
-    // Suppress warning is safe because variable is initialized in onCreate
-    @SuppressWarnings("NullableProblems")
-    @NonNull
-    private RecyclerView listTasks;
-    // Suppress warning is safe because variable is initialized in onCreate
-    @SuppressWarnings("NullableProblems")
-    @NonNull
-    private TextView lblNoTasks;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,16 +67,16 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
         configViewModel();
     }
 
-    public void configRecyclerView(){
+    public void configRecyclerView() {
         binding.listTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.listTasks.setAdapter(adapter);
     }
 
-    public void setBtnAddTask(){
+    public void setBtnAddTask() {
         binding.fabAddTask.setOnClickListener(v -> showAddTaskDialog());
     }
 
-    public void configViewModel(){
+    public void configViewModel() {
         ViewModelFactory viewModelFactory = Injection.provideViewModelFactory(this);
         this.taskViewModel = new ViewModelProvider(this, viewModelFactory).get(TaskViewModel.class);
         this.taskViewModel.getAllTasks().observe(this, this::updateTasksList);
@@ -158,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
 
 
                 Task task = new Task(
-                      //  id,
+                        //  id,
                         taskProject.getId(),
                         taskName,
                         new Date().getTime()
@@ -169,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
                 dialogInterface.dismiss();
             }
             // If name has been set, but project has not been set (this should never occur)
-            else{
+            else {
                 dialogInterface.dismiss();
             }
         }
@@ -204,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements TasksAdapter.Dele
     }
 
 
-    private void updateTasksList(List<Task> tasks){
+    private void updateTasksList(List<Task> tasks) {
         this.tasks = (ArrayList<Task>) tasks;
         updateTasks();
     }
