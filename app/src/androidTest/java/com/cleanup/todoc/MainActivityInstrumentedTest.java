@@ -97,7 +97,7 @@ public class MainActivityInstrumentedTest {
         onView(withId(R.id.action_filter)).perform(click());
         onView(withText(R.string.sort_oldest_first)).perform(click());
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(0, R.id.lbl_task_name))
-                .check(matches(withText("aaa Tâche example")));
+                .check(matches(withText("aaa Tâche example"))); //aaa first created
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(1, R.id.lbl_task_name))
                 .check(matches(withText("zzz Tâche example")));
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(2, R.id.lbl_task_name))
@@ -107,7 +107,7 @@ public class MainActivityInstrumentedTest {
         onView(withId(R.id.action_filter)).perform(click());
         onView(withText(R.string.sort_recent_first)).perform(click());
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(0, R.id.lbl_task_name))
-                .check(matches(withText("hhh Tâche example")));
+                .check(matches(withText("hhh Tâche example"))); //hhh last created
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(1, R.id.lbl_task_name))
                 .check(matches(withText("zzz Tâche example")));
         onView(withRecyclerView(R.id.list_tasks).atPositionOnView(2, R.id.lbl_task_name))

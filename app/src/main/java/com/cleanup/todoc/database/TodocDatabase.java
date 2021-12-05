@@ -35,7 +35,6 @@ public abstract class TodocDatabase extends RoomDatabase {
                 }
             }
         }
-
         return INSTANCE;
     }
 
